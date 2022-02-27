@@ -22,7 +22,7 @@ function criteriaPrompt() {
 
   //confirm if password is correct length
   if (passwordLength > 8 && passwordLength < 128) {
-    window.prompt("Please confirm your selection of " + length + " characters.");
+    window.confirm("Please confirm your selection of " + passwordLength + " characters.");
     // return passwordLength;
   } else {
     window.alert("Please provide a valid character amount between 8 and 128.");
@@ -33,27 +33,27 @@ function criteriaPrompt() {
   var lowerCaseConfirm = window.confirm("Do you want your password to have lower case letters?");
   // if yes, then remember we want to have lower case
   if (lowerCaseConfirm) {
-     return lowerCaseConfirm;
+     passwordOptions += lowerCaseConfirm;
     // if no, move on
-  } else {
-  }
+  // } else {
+   }
   // ask if they want upper case
   var upperCaseConfirm = window.confirm("do you want your password to have upper case letters?");
   // if yes store we want to have upper case
   if (upperCaseConfirm) {
-    return upperCaseConfirm;
+    passwordOptions += upperCaseConfirm;
   } else {
   }
   // ask if they want special characters
   var specialCarConfirm = window.confirm("Do you want special characters in your password?");
   if (specialCarConfirm) {
-    return specialCarConfirm;
+    passwordOptions += specialCarConfirm;
   } else {
   }
   // ask if they want numbers
   var numbersConfirm = window.confirm("Do you want numbers in your password?");
   if (numbersConfirm) {
-    return numbersConfirm;
+    passwordOptions += numbersConfirm;
   } else {
   }
 
@@ -97,9 +97,15 @@ function generatePassword() {
     actualChosen = push(randomCar(lowerCase));
   }
   // if they said yes to upper case 
-  
+if (runPassword.upperCaseConfirm) {
+  potentialCar = potentialCar.concat(upperCase);
+  actualChosen = push(randomCar(upperCase));
+}
   // if they said yes to numbers 
-
+if (runPassword.numbersConfirm) {
+  potentialCar = potentialCar.concat(numbers);
+  actualChosen = push(randomCar(numbers));
+}
   // this brings all the different characters together and gives it the appropriate length 
   for (var i = 0; i < runPassword.passwordLength; i++) {
     var potentialCars = randomCar(potentialCar);
@@ -117,7 +123,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-}
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
