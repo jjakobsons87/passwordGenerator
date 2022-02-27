@@ -10,9 +10,9 @@ var specialCar = ["(","!","#","$","%","&","*",".","/",":",";","<","=",">","?","@
 
 var randomCar = function(arr) {
   // multiply by array.length 
-  var value = Math.floor(Math.random())
+  var value = Math.floor(Math.random()) * arr.length;
   //  another variable that 
-}
+} 
 
 function criteriaPrompt() {
   // ask how many characters they want in the password
@@ -94,18 +94,19 @@ function generatePassword() {
   // if they said yes to lower case
   if (runPassword.lowerCaseConfirm) {
     potentialCar = potentialCar.concat(lowerCase);
-    actualChosen = push(randomCar(lowerCase));
+    actualChosen.push(randomCar(lowerCase));
   }
   // if they said yes to upper case 
 if (runPassword.upperCaseConfirm) {
   potentialCar = potentialCar.concat(upperCase);
-  actualChosen = push(randomCar(upperCase));
+  actualChosen.push(randomCar(upperCase));
 }
   // if they said yes to numbers 
 if (runPassword.numbersConfirm) {
   potentialCar = potentialCar.concat(numbers);
-  actualChosen = push(randomCar(numbers));
+  actualChosen.push(randomCar(numbers));
 }
+
   // this brings all the different characters together and gives it the appropriate length 
   for (var i = 0; i < runPassword.passwordLength; i++) {
     var potentialCars = randomCar(potentialCar);
@@ -123,6 +124,7 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+  console.log(password);
 };
 
 // Add event listener to generate button
