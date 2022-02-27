@@ -12,6 +12,7 @@ var randomCar = function(arr) {
   // multiply by array.length 
   var value = Math.floor(Math.random()) * arr.length;
   //  another variable that 
+  return value;
 } 
 
 function criteriaPrompt() {
