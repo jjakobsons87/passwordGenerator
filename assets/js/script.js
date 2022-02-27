@@ -4,7 +4,7 @@ var password= document.getElementById("password");
 var upperCase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-var specialCar = [" (!#$%&()*./:;<=>?@[\]^_`{|}~)"];
+var specialCar = ["(","!","#","$","%","&","*",".","/",":",";","<","=",">","?","@","`","{","|","}","~"];
  // change all the above 
 
 
@@ -16,18 +16,19 @@ var randomCar = function(arr) {
 
 function criteriaPrompt() {
   // ask how many characters they want in the password
-  var passwordLength = window.prompt("How many characters do you want your password to have? Please choose a length between 8 - 128 characters. ");
+  var passwordLength = parseInt(prompt("How many characters do you want your password to have? Please choose a length between 8 - 128 characters. "));
   // convert number of characters
-  passwordLength = parseInt(passwordLength);
+  // passwordLength = parseInt(passwordLength);
 
   //confirm if password is correct length
   if (passwordLength > 8 && passwordLength < 128) {
     window.prompt("Please confirm your selection of " + length + " characters.");
-    return passwordLength;
+    // return passwordLength;
   } else {
     window.alert("Please provide a valid character amount between 8 and 128.");
     return;
-  }
+  };
+
   // ask if they want lower case
   var lowerCaseConfirm = window.confirm("Do you want your password to have lower case letters?");
   // if yes, then remember we want to have lower case
@@ -63,8 +64,19 @@ function criteriaPrompt() {
     specialCarConfirm: specialCarConfirm,
     numbersConfirm: numbersConfirm,
   }
-  return passwordOptions;
-  // if all are false, they must go back and select at lease one
+  
+  // if all are false, they must go back and select at lease one'
+  if (
+    lowerCaseConfirm === false &&
+    upperCaseConfirm === false &&
+    specialCarConfirm === false &&
+    numbersConfirm === false
+  ) {
+    window.alert("You must choose at least one password character type for your password.");
+    return null;
+  } else {
+    return passwordOptions;
+  }
 };
 
 // function to generate password 
@@ -80,7 +92,12 @@ function generatePassword() {
     actualChosen.push(randomCar(specialCar));
   }
   // if they said yes to lower case
+  if (runPassword.lowerCaseConfirm) {
+    potentialCar = potentialCar.concat(lowerCase);
+    actualChosen = push(randomCar(lowerCase));
+  }
   // if they said yes to upper case 
+  
   // if they said yes to numbers 
 
   // this brings all the different characters together and gives it the appropriate length 
