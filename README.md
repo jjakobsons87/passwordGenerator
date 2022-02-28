@@ -1,5 +1,5 @@
 # passwordGenerator
-This website is my professional portfolio. 
+This website is a random password generator.  
 
 ## Built With 
 This page was built using: 
