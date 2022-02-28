@@ -8,21 +8,19 @@ var specialCar = ["(","!","#","$","%","&","*",".","/",":",";","<","=",">","?","@
  // change all the above 
 
 
-var randomCar = function(arr) {
-  // multiply by array.length 
-  var value = Math.floor(Math.random()) * arr.length;
-  //  another variable that 
-  return value;
+var randomCar = function(array) {
+  let index = (Math.random()) * array.length;
+  return array[index];
 } 
 
 function criteriaPrompt() {
   // ask how many characters they want in the password
   var passwordLength = parseInt(prompt("How many characters do you want your password to have? Please choose a length between 8 - 128 characters. "));
   // convert number of characters
-  // passwordLength = parseInt(passwordLength);
+  passwordLength = parseInt(passwordLength);
 
   //confirm if password is correct length
-  if (passwordLength > 8 && passwordLength < 128) {
+  if (passwordLength > 7 && passwordLength < 129) {
     window.confirm("Please confirm your selection of " + passwordLength + " characters.");
     // return passwordLength;
   } else {
@@ -33,30 +31,31 @@ function criteriaPrompt() {
   // ask if they want lower case
   var lowerCaseConfirm = window.confirm("Do you want your password to have lower case letters?");
   // if yes, then remember we want to have lower case
-  if (lowerCaseConfirm) {
-     passwordOptions += lowerCaseConfirm;
-    // if no, move on
-  // } else {
-   }
+  // if (lowerCaseConfirm) {
+  //    passwordOptions += lowerCaseConfirm;
+  //    console.log(lowerCaseConfirm);
+  //   // if no, move on
+  // // } else {
+  //  }
   // ask if they want upper case
   var upperCaseConfirm = window.confirm("do you want your password to have upper case letters?");
   // if yes store we want to have upper case
-  if (upperCaseConfirm) {
-    passwordOptions += upperCaseConfirm;
-  } else {
-  }
+  // if (upperCaseConfirm) {
+  //   passwordOptions += upperCaseConfirm;
+  // } else {
+  // }
   // ask if they want special characters
   var specialCarConfirm = window.confirm("Do you want special characters in your password?");
-  if (specialCarConfirm) {
-    passwordOptions += specialCarConfirm;
-  } else {
-  }
+  // if (specialCarConfirm) {
+  //   passwordOptions += specialCarConfirm;
+  // } else {
+  // }
   // ask if they want numbers
   var numbersConfirm = window.confirm("Do you want numbers in your password?");
-  if (numbersConfirm) {
-    passwordOptions += numbersConfirm;
-  } else {
-  }
+  // if (numbersConfirm) {
+  //   passwordOptions += numbersConfirm;
+  // } else {
+  // }
 
   var passwordOptions = {
     passwordLength: passwordLength,
@@ -85,27 +84,27 @@ function generatePassword() {
   var runPassword = criteriaPrompt();
   var result = [];
   var potentialCar = [];
-  var actualChosen = [];
+  // var actualChosen = [];
   // when criteriaPrompt ran, did they select special characters? if yes put in this array 
   if (runPassword.specialCarConfirm) {
     potentialCar = potentialCar.concat(specialCar);
     // if yes, put these characters into the random generator 
-    actualChosen.push(randomCar(specialCar));
+    // actualChosen.push(randomCar(specialCar));
   }
   // if they said yes to lower case
   if (runPassword.lowerCaseConfirm) {
     potentialCar = potentialCar.concat(lowerCase);
-    actualChosen.push(randomCar(lowerCase));
+    // actualChosen.push(randomCar(lowerCase));
   }
   // if they said yes to upper case 
 if (runPassword.upperCaseConfirm) {
   potentialCar = potentialCar.concat(upperCase);
-  actualChosen.push(randomCar(upperCase));
+  // actualChosen.push(randomCar(upperCase));
 }
   // if they said yes to numbers 
 if (runPassword.numbersConfirm) {
   potentialCar = potentialCar.concat(numbers);
-  actualChosen.push(randomCar(numbers));
+  // actualChosen.push(randomCar(numbers));
 }
 
   // this brings all the different characters together and gives it the appropriate length 
@@ -113,9 +112,9 @@ if (runPassword.numbersConfirm) {
     var potentialCars = randomCar(potentialCar);
     result.push(potentialCars);
   }
-  for (var i = 0; i < actualChosen.passwordLength; i++) {
-    result[i] = actualChosen[i]; 
-  }
+  // for (var i = 0; i < actualChosen.passwordLength; i++) {
+  //   result[i] = actualChosen[i]; 
+  // }
   return result.join('');
 };
 
